@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Motion - Case Study</title>
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<!-- Add to <head> if not already included -->
+<script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+
+<body class="case-study-page">
+    <body class="case-study-page" style="--scanline-opacity: 0;"></body>
+
+    
+
+  <div class="canvas">
+    
+    <!-- Top Bar Navigation with Integrated HUD Jump Index -->
+    <nav class="comic-nav">
+      <a href="index.html" class="back-lnk">← GO HOME</a>
+      
+      <div class="nav-index-links">
+        <a href="#case-study-01" class="index-btn">
+          <span class="index-num">01</span>
+          <span class="index-label">Design & Displays</span>
+        </a>
+        <a href="#case-study-02" class="index-btn">
+          <span class="index-num">02</span>
+          <span class="index-label">Tech in Motion</span>
+        </a>
+        <a href="#case-study-03" class="index-btn">
+          <span class="index-num">03</span>
+          <span class="index-label">Illustration</span>
+        </a>
+      </div>
+    </nav>
+
+    <!-- SCROLL TO TOP HUD BUTTON -->
+    <button id="scrollTopBtn" class="scroll-top-btn" aria-label="Scroll to Top">
+        <span class="btn-arrow">&uarr;</span>
+        <span class="btn-text">TOP</span>
+    </button>
+
+
+    
+    <!--------------------------------------->
+    <!------- CASE STUDY 01 ----------------->
+    <!--------------------------------------->
+
+    <!-- CASE STUDY SECTION -->
+<section id="motion-case-study" class="case-study-block">
+  <header class="section-header header-stacked">
+        <!-- Logo spans top row full width -->
+        <img src="assets/office-case-study/appfire-logo.png" alt="Appfire Logo" class="header-logo">
+
+        <!-- Title & Subtitle sit side-by-side underneath -->
+        <div class="header-content-wrapper">
+         <div class="header-title-zone">
+             <h2 class="keep-inline">Lottie <br><span class="accent-text">.JSON</span></h2>
+            </div>
+          <p class="header-subtitle">
+          Injecting high-fidelity 3D industrial rendering and sharp package formatting into global retail environments.
+          </p>
+        </div>
+    </header>
+
+  <!-- MAIN 50/50 SPLIT CONTAINER -->
+  <div class="panel-display motion-grid-layout">
+    
+  <!-- LEFT COLUMN: Stylized Frame + 3x3 Lottie Container -->
+  <div class="frame motion-lottie-frame">
+    <span class="sticker-label">Lottie JSON</span>
+    
+    <div class="lottie-3x3-grid">
+      
+      <!-- SLOT 1 -->
+      <div class="lottie-slot">
+        <lottie-player 
+            id="coffee"
+            src="https://gist.githubusercontent.com/dankfranks/e5bcc53b4a21662173814179a6992ce7/raw/Coffee%20-%20Dark%205"
+            data-dark="https://gist.githubusercontent.com/dankfranks/e5bcc53b4a21662173814179a6992ce7/raw/Coffee%20-%20Dark%205"
+            data-light="https://gist.githubusercontent.com/dankfranks/e5bcc53b4a21662173814179a6992ce7/raw/Coffee%20-%20Light%204"
+            background="transparent"
+            speed="1"
+            loop
+            autoplay>
+        </lottie-player>
+      </div>
+
+      <!-- SLOT 2 -->
+      <div class="lottie-slot">
+        <lottie-player 
+          id="getting-started" 
+          src="https://gist.githubusercontent.com/dankfranks/e5bcc53b4a21662173814179a6992ce7/raw/8274ced63cc02711b4ad112d1bee31ab019d43f0/GettingStarted%2520-%2520Dark%203"
+          data-dark="https://gist.githubusercontent.com/dankfranks/e5bcc53b4a21662173814179a6992ce7/raw/8274ced63cc02711b4ad112d1bee31ab019d43f0/GettingStarted%2520-%2520Dark%203" 
+          data-light="https://gist.githubusercontent.com/dankfranks/e5bcc53b4a21662173814179a6992ce7/raw/24c5f93e9dbef248528748de90da3d30c7357b64/GettingStarted%2520-%2520Light%203" 
+          background="transparent" speed="1" loop autoplay>
+        </lottie-player>
+      </div>
+
+      <!-- SLOT 3 -->
+      <div class="lottie-slot">
+        <lottie-player 
+          id="lost-permission" 
+          src="https://gist.githubusercontent.com/dankfranks/e5bcc53b4a21662173814179a6992ce7/raw/9aea63990c1cc1b258f883000c6bc51fb20b60bd/Lost%2520Permission%2520-%2520Dark%204"
+          data-dark="https://gist.githubusercontent.com/dankfranks/e5bcc53b4a21662173814179a6992ce7/raw/9aea63990c1cc1b258f883000c6bc51fb20b60bd/Lost%2520Permission%2520-%2520Dark%204" 
+          data-light="https://gist.githubusercontent.com/dankfranks/e5bcc53b4a21662173814179a6992ce7/raw/24c5f93e9dbef248528748de90da3d30c7357b64/Lost%2520Permission%2520-%2520Light%204" 
+          background="transparent" speed="1" loop autoplay>
+        </lottie-player>
+      </div>
+
+      <!-- SLOT 4 -->
+      <div class="lottie-slot">
+        <lottie-player 
+          id="objectives" 
+          src="https://gist.githubusercontent.com/dankfranks/e5bcc53b4a21662173814179a6992ce7/raw/9aea63990c1cc1b258f883000c6bc51fb20b60bd/Objectives%2520-%2520Dark%203"
+          data-dark="https://gist.githubusercontent.com/dankfranks/e5bcc53b4a21662173814179a6992ce7/raw/9aea63990c1cc1b258f883000c6bc51fb20b60bd/Objectives%2520-%2520Dark%203" 
+          data-light="https://gist.githubusercontent.com/dankfranks/e5bcc53b4a21662173814179a6992ce7/raw/24c5f93e9dbef248528748de90da3d30c7357b64/Objectives%2520-%2520Light%202" 
+          background="transparent" speed="1" loop autoplay>
+        </lottie-player>
+      </div>
+
+      <!-- SLOT 5 -->
+      <div class="lottie-slot">
+        <lottie-player 
+          id="error" 
+          src="https://gist.githubusercontent.com/dankfranks/e5bcc53b4a21662173814179a6992ce7/raw/9aea63990c1cc1b258f883000c6bc51fb20b60bd/Error%2520-%2520Dark%203"
+          data-dark="https://gist.githubusercontent.com/dankfranks/e5bcc53b4a21662173814179a6992ce7/raw/9aea63990c1cc1b258f883000c6bc51fb20b60bd/Error%2520-%2520Dark%203" 
+          data-light="https://gist.githubusercontent.com/dankfranks/e5bcc53b4a21662173814179a6992ce7/raw/24c5f93e9dbef248528748de90da3d30c7357b64/Error%2520-%2520Light%202" 
+          background="transparent" speed="1" loop autoplay>
+        </lottie-player>
+      </div>
+
+      <!-- SLOT 6 -->
+      <div class="lottie-slot">
+        <lottie-player 
+          id="risks" 
+          src="https://gist.githubusercontent.com/dankfranks/e5bcc53b4a21662173814179a6992ce7/raw/9aea63990c1cc1b258f883000c6bc51fb20b60bd/Risks%2520-%2520Dark%203"
+          data-dark="https://gist.githubusercontent.com/dankfranks/e5bcc53b4a21662173814179a6992ce7/raw/9aea63990c1cc1b258f883000c6bc51fb20b60bd/Risks%2520-%2520Dark%203" 
+          data-light="https://gist.githubusercontent.com/dankfranks/e5bcc53b4a21662173814179a6992ce7/raw/24c5f93e9dbef248528748de90da3d30c7357b64/Risks%2520-%2520Light%203" 
+          background="transparent" speed="1" loop autoplay>
+        </lottie-player>
+      </div>
+
+      <!-- SLOT 7 -->
+      <div class="lottie-slot">
+        <lottie-player 
+          id="check" 
+          src="https://gist.githubusercontent.com/dankfranks/e5bcc53b4a21662173814179a6992ce7/raw/9aea63990c1cc1b258f883000c6bc51fb20b60bd/Dashboards%2520-%2520Dark%203"
+          data-dark="https://gist.githubusercontent.com/dankfranks/e5bcc53b4a21662173814179a6992ce7/raw/9aea63990c1cc1b258f883000c6bc51fb20b60bd/Dashboards%2520-%2520Dark%203" 
+          data-light="https://gist.githubusercontent.com/dankfranks/e5bcc53b4a21662173814179a6992ce7/raw/24c5f93e9dbef248528748de90da3d30c7357b64/Dashboards%2520-%2520Light%202" 
+          background="transparent" speed="1" loop autoplay>
+        </lottie-player>
+      </div>
+       
+
+      <!-- SLOT 8 -->
+      <div class="lottie-slot">
+        <lottie-player 
+          id="okr" 
+          src="https://gist.githubusercontent.com/dankfranks/e5bcc53b4a21662173814179a6992ce7/raw/9aea63990c1cc1b258f883000c6bc51fb20b60bd/OKR%2520-%2520Dark%203"
+          data-dark="https://gist.githubusercontent.com/dankfranks/e5bcc53b4a21662173814179a6992ce7/raw/9aea63990c1cc1b258f883000c6bc51fb20b60bd/OKR%2520-%2520Dark%203" 
+          data-light="https://gist.githubusercontent.com/dankfranks/e5bcc53b4a21662173814179a6992ce7/raw/24c5f93e9dbef248528748de90da3d30c7357b64/OKR%2520-%2520Light%203" 
+          background="transparent" speed="1" loop autoplay>
+        </lottie-player>
+      </div>
+
+      <!-- SLOT 9 -->
+      <div class="lottie-slot">
+        <lottie-player 
+          id="lottie-9" 
+          src="https://gist.githubusercontent.com/dankfranks/e5bcc53b4a21662173814179a6992ce7/raw/CheckCheck%20-%20Dark%203"
+          data-dark="https://gist.githubusercontent.com/dankfranks/e5bcc53b4a21662173814179a6992ce7/raw/CheckCheck%20-%20Dark%203" 
+          data-light="https://gist.githubusercontent.com/dankfranks/e5bcc53b4a21662173814179a6992ce7/raw/24c5f93e9dbef248528748de90da3d30c7357b64/Check%2520-%2520Light%25202" 
+          background="transparent" speed="1" loop autoplay>
+        </lottie-player>
+      </div>
+
+    </div>
+
+
+    </div>
+
+    <!-- RIGHT COLUMN: Stacked Parameters & Dark Mode Toggle -->
+    <div class="motion-info-stack">      
+      <div class="motion-param-block">
+        <h3>Breaking down the project parameters.</h3>
+        <p>Translating physical structural requirements into high-precision, production-ready vector blueprints and CAD die-lines.</p>
+      </div>
+
+      <div class="motion-param-block">
+        <h3>Breaking down the project parameters.</h3>
+        <p>Translating physical structural requirements into high-precision, production-ready vector blueprints and CAD die-lines.</p>
+      </div>
+
+      <div class="motion-param-block">
+        <h3>Breaking down the project parameters.</h3>
+        <p>Translating physical structural requirements into high-precision, production-ready vector blueprints and CAD die-lines.</p>
+      </div>
+
+      <!-- DARK / LIGHT MODE SLIDE BUTTON -->
+      <div class="theme-toggle-wrapper">
+        <span class="theme-label">Dark/Light Mode</span>
+        <label class="hud-switch">
+          <input type="checkbox" id="themeToggleBtn">
+          <span class="hud-slider"></span>
+        </label>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+      <!-- ROW 1: 75% Text / 25% Role & Specs -->
+<div class="grid-story">
+  <div class="story-block">
+    <h3>Breaking down the project parameters.</h3>
+    <p>
+      My pipeline bypassed traditional flat formatting rules. I mapped out full interior digital schematics of the internal wiring, translating rigid industrial designs into an <strong class="marker-highlight">energetic, high-impact marketing system</strong> built to dominate store shelves.
+    </p>
+  </div>
+
+  <div class="spec-card frame">
+    <div class="spec-group">
+      <div class="spec-title">The Role</div>
+      <div class="spec-value">3D Generalist & Package Layout</div>
+    </div>
+    <div class="spec-group">
+      <div class="spec-title">The Tools</div>
+      <div class="spec-value">Cinema 4D, After Effects, Illustrator</div>
+    </div>
+    <div class="spec-group">
+      <div class="spec-title">The Scale</div>
+      <div class="spec-value">Massive Retail Distribution</div>
+    </div>
+  </div>
+</div>
+
+<!-- ROW 2: Bottom Production Files Grid -->
+<div class="archive-section">
+  <div class="archive-title">Highlights</div>
+  <div class="archive-strip grid-4">
+    <a href="assets/motion/lottie-sq-1.png" class="archive-box lightbox-trigger" data-gallery="cs01" data-caption="Smooth motions">
+      <img src="assets/motion/lottie-sq-1.png" alt="Smooth motions" class="archive-img">
+      <div class="archive-overlay"><span>[ Smooth motions ]</span></div>
+    </a>
+    <a href="assets/motion/lottie-sq-2.png" class="archive-box lightbox-trigger" data-gallery="cs01" data-caption="Optimized layer performance">
+      <img src="assets/motion/lottie-sq-2.png" alt="Optimized layer performance" class="archive-img">
+      <div class="archive-overlay"><span>[ Optimized layer performance ]</span></div>
+    </a>
+    <a href="assets/motion/lottie-sq-3.png" class="archive-box lightbox-trigger" data-gallery="cs01" data-caption="Single Layer Animations">
+      <img src="assets/motion/lottie-sq-3.png" alt="Single Layer Animations" class="archive-img">
+      <div class="archive-overlay"><span>[ Single Layer Animations ]</span></div>
+    </a>
+    
+  </div>
+</div>
+
+<!-- LIGHTBOX MODAL WITH ARROWS -->
+<div id="hud-lightbox" class="hud-lightbox" aria-hidden="true">
+  <button class="lightbox-close" id="lightboxClose">&times;</button>
+  <button class="lightbox-arrow lightbox-prev" id="lightboxPrev">&#10094;</button>
+  <button class="lightbox-arrow lightbox-next" id="lightboxNext">&#10095;</button>
+  
+  <div class="lightbox-content">
+    <img id="lightboxImg" src="" alt="Enlarged View">
+    <div id="lightboxCaption" class="lightbox-caption"></div>
+  </div>
+</div>
+
+
+
+<!--------------------------------------->
+<!------- CASE STUDY 02 ----------------->
+<!--------------------------------------->
+
+
+<section id="case-study-02" class="case-study-block">
+      <header class="section-header header-stacked">
+        <!-- Logo spans top row full width -->
+        <img src="assets/motion/whiteboards-logo.png" alt="Whiteboards Logo" class="header-logo">
+
+        <!-- Title & Subtitle sit side-by-side underneath -->
+        <div class="header-content-wrapper">
+         <div class="header-title-zone">
+             <h2 class="keep-inline">Landing <br><span class="accent-text">Video</span></h2>
+            </div>
+          <p class="header-subtitle">
+          Injecting high-fidelity 3D industrial rendering and sharp package formatting into global retail environments.
+          </p>
+        </div>
+    </header>
+      
+      <!-- FULL-WIDTH YOUTUBE PLAYER CONTAINER -->
+      <div class="panel-display">
+  <!-- HUD STYLIZED FRAME CONTAINER -->
+  <div class="frame frame-big youtube-frame-container" id="ytPlayerContainer">
+    <span class="sticker-label">02 Video Reel</span>
+
+    <!-- Video Embed -->
+    <iframe
+        src="https://www.youtube.com/embed/bLubJYUcCx0"
+        title="YouTube video player"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen>
+    </iframe>
+
+    <!-- Transparent Interactive Overlay -->
+    <div class="video-click-overlay" id="ytVideoOverlay" aria-label="Toggle Play/Pause">
+      <div class="pause-indicator" id="pauseIndicator">PAUSED</div>
+    </div>
+  </div>
+</div>
+
+      <div class="grid-story">
+        <div class="story-block">
+          <h3>Precision die-line geometry & tolerances.</h3>
+          <p>
+            Translating physical structural requirements into flat vector die-lines required extreme accuracy. <strong class="marker-highlight">Tolerances were mapped to 0.1mm specifications</strong> to guarantee zero misalignment during high-speed automated folding and gluing cycles.
+          </p>
+        </div>
+
+        <div class="spec-card">
+          <div class="spec-group">
+            <div class="spec-title">The Focus</div>
+            <div class="spec-value">Vector CAD & Packaging Geometry</div>
+          </div>
+          <div class="spec-group">
+            <div class="spec-title">The Tools</div>
+            <div class="spec-value">Adobe Illustrator, CAD, DXF Export</div>
+          </div>
+          <div class="spec-group">
+            <div class="spec-title">Tolerance</div>
+            <div class="spec-value">±0.05mm Production Cut</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ROW 2: Bottom Production Files Grid -->
+<div class="archive-section">
+  <div class="archive-title">Highlights</div>
+  <div class="archive-strip grid-4">
+    <a href="assets/motion/whiteboards-img-1.png" class="archive-box lightbox-trigger" data-gallery="cs01" data-caption="CS01 // Flat Vector Die-Lines">
+      <img src="assets/motion/whiteboards-img-1.png" alt="Flat Vector Die-Lines" class="archive-img">
+      <div class="archive-overlay"><span>[ Flat Vector Die-Lines ]</span></div>
+    </a>
+    <a href="assets/motion/whiteboards-img-2.png" class="archive-box lightbox-trigger" data-gallery="cs01" data-caption="CS01 // Variant Colorway Grids">
+      <img src="assets/motion/whiteboards-img-2.png" alt="Variant Colorway Grids" class="archive-img">
+      <div class="archive-overlay"><span>[ Variant Colorway Grids ]</span></div>
+    </a>
+    <a href="assets/motion/whiteboards-img-3.png" class="archive-box lightbox-trigger" data-gallery="cs01" data-caption="CS01 // Typography / Spacing Maps">
+      <img src="assets/motion/whiteboards-img-3.png" alt="Typography / Spacing Maps" class="archive-img">
+      <div class="archive-overlay"><span>[ Typography / Spacing Maps ]</span></div>
+    </a>
+
+  </div>
+</div>
+
+<!-- LIGHTBOX MODAL WITH ARROWS -->
+<div id="hud-lightbox" class="hud-lightbox" aria-hidden="true">
+  <button class="lightbox-close" id="lightboxClose">&times;</button>
+  <button class="lightbox-arrow lightbox-prev" id="lightboxPrev">&#10094;</button>
+  <button class="lightbox-arrow lightbox-next" id="lightboxNext">&#10095;</button>
+  
+  <div class="lightbox-content">
+    <img id="lightboxImg" src="" alt="Enlarged View">
+    <div id="lightboxCaption" class="lightbox-caption"></div>
+  </div>
+</div>
+</section>
+
+
+
+<!--------------------------------------->
+<!------- Agile Poker CASE STUDY 03 ----------------->
+<!--------------------------------------->
+
+
+<section id="case-study-02" class="case-study-block">
+      <header class="section-header header-stacked">
+        <!-- Logo spans top row full width -->
+        <img src="assets/motion/atlassian-logo.png" alt="Atlassian Logo" class="header-logo">
+
+        <!-- Title & Subtitle sit side-by-side underneath -->
+        <div class="header-content-wrapper">
+         <div class="header-title-zone">
+             <h2 class="keep-inline">Agile <br><span class="accent-text">Poker</span></h2>
+            </div>
+          <p class="header-subtitle">
+          Injecting high-fidelity 3D industrial rendering and sharp package formatting into global retail environments.
+          </p>
+        </div>
+    </header>
+
+    <!-- FULL-WIDTH YOUTUBE PLAYER CONTAINER -->
+      <div class="panel-display">
+  <!-- HUD STYLIZED FRAME CONTAINER -->
+  <div class="frame frame-big youtube-frame-container" id="ytPlayerContainer">
+    <span class="sticker-label">02 Video Reel</span>
+
+    <!-- Video Embed -->
+    <iframe
+        src="https://www.youtube.com/embed/E2IyyyI0Xq4"
+        title="YouTube video player"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen>
+    </iframe>
+
+    <!-- Transparent Interactive Overlay -->
+    <div class="video-click-overlay" id="ytVideoOverlay" aria-label="Toggle Play/Pause">
+      <div class="pause-indicator" id="pauseIndicator">PAUSED</div>
+    </div>
+  </div>
+</div>
+
+<div class="grid-story">
+        <div class="story-block">
+          <h3>HUD design tokens & typography maps.</h3>
+          <p>
+            Standardizing spatial tokens across digital and print media. <strong class="marker-highlight">Structured 8-point typographic grids</strong> ensure complete visual unity between high-contrast software interfaces, retail signage, and packaging labels.
+          </p>
+        </div>
+
+        <div class="spec-card">
+          <div class="spec-group">
+            <div class="spec-title">The Focus</div>
+            <div class="spec-value">Design System & HUD Architecture</div>
+          </div>
+          <div class="spec-group">
+            <div class="spec-title">Typefaces</div>
+            <div class="spec-value">Fahkwang, Benzin, JetBrains Mono</div>
+          </div>
+          <div class="spec-group">
+            <div class="spec-title">Palette</div>
+            <div class="spec-value">Electric Cyan (#00F0FF), Dark Void</div>
+          </div>
+        </div>
+      </div>
+</section>
+
+<section id="case-study-04" class="case-study-block"></section>
+      <div class="panel-display">
+        <div class="frame frame-big lightbox-trigger" data-fullsrc="assets/motion/agile-poker-frame-1.jpg" data-caption="Full Assembly Render">
+            <span class="sticker-label">Transition Comps</span>
+            <img src="assets/motion/agile-poker-frame-1.jpg" alt="Full Assembly Render" class="frame-img">
+        </div>
+
+        <div class="frame frame-big lightbox-trigger" data-fullsrc="assets/motion/agile-poker-frame-4.jpg" data-caption="Finished Product Photo Close-Up">
+            <span class="sticker-label">UI Animation</span>
+            <img src="assets/motion/agile-poker-frame-4.jpg" alt="Finished Product Photo Close-Up" class="frame-img">
+        </div>
+      </div>
+
+      <div class="grid-story">
+        <div class="story-block">
+          <h3>HUD design tokens & typography maps.</h3>
+          <p>
+            Standardizing spatial tokens across digital and print media. <strong class="marker-highlight">Structured 8-point typographic grids</strong> ensure complete visual unity between high-contrast software interfaces, retail signage, and packaging labels.
+          </p>
+        </div>
+      </div>
+</section>
+      
+
+  <!-- ROW 2: Bottom Production Files Grid -->
+<div class="archive-section">
+  <div class="archive-title">Highlights</div>
+  <div class="archive-strip grid-4">
+    <a href="assets/motion/agile-poker-frame-2.jpg" class="archive-box lightbox-trigger" data-gallery="cs01" data-caption="CS01 // Flat Vector Die-Lines">
+      <img src="assets/motion/agile-poker-frame-2.jpg" alt="Flat Vector Die-Lines" class="archive-img">
+      <div class="archive-overlay"><span>[ Flat Vector Die-Lines ]</span></div>
+    </a>
+    <a href="assets/motion/agile-poker-frame-3.jpg" class="archive-box lightbox-trigger" data-gallery="cs01" data-caption="CS01 // Variant Colorway Grids">
+      <img src="assets/motion/agile-poker-frame-3.jpg" alt="Variant Colorway Grids" class="archive-img">
+      <div class="archive-overlay"><span>[ Variant Colorway Grids ]</span></div>
+    </a>
+    <a href="assets/motion/agile-poker-frame-5.jpg" class="archive-box lightbox-trigger" data-gallery="cs01" data-caption="CS01 // Typography / Spacing Maps">
+      <img src="assets/motion/agile-poker-frame-5.jpg" alt="Typography / Spacing Maps" class="archive-img">
+      <div class="archive-overlay"><span>[ Typography / Spacing Maps ]</span></div>
+    </a>
+    <a href="assets/motion/agile-poker-frame-6.jpg" class="archive-box lightbox-trigger" data-gallery="cs01" data-caption="CS01 // Final Render Composite">
+      <img src="assets/motion/agile-poker-frame-6.jpg" alt="Final Render Composite" class="archive-img">
+      <div class="archive-overlay"><span>[ Final Render Composite ]</span></div>
+    </a>
+  </div>
+</div>
+
+<!-- LIGHTBOX MODAL WITH ARROWS -->
+<div id="hud-lightbox" class="hud-lightbox" aria-hidden="true">
+  <button class="lightbox-close" id="lightboxClose">&times;</button>
+  <button class="lightbox-arrow lightbox-prev" id="lightboxPrev">&#10094;</button>
+  <button class="lightbox-arrow lightbox-next" id="lightboxNext">&#10095;</button>
+  
+  <div class="lightbox-content">
+    <img id="lightboxImg" src="" alt="Enlarged View">
+    <div id="lightboxCaption" class="lightbox-caption"></div>
+  </div>
+</div>
+</section>
+
+
+<!--------------------------------------->
+    <!-- FOOTER / SKILLS SECTION -->
+<!--------------------------------------->
+
+
+<section class="skills-section">
+  <div class="skills-layout">
+    <!-- Left Column: Scaled About Button, Subtitle & Social Links -->
+    <div class="skills-left">
+      
+      <!-- FOOTER ABOUT BUTTON -->
+<div style="margin-top: 1.5rem; margin-bottom: 1.5rem;">
+  <a href="about.html" class="footer-about-btn">
+    <span class="index-label">ABOUT ME</span>
+  </a>
+</div>
+
+      <!-- Subtitle -->
+      <p style="margin-bottom: 1rem; font-family: monospace; opacity: 0.8;">Proof I'm human.</p>
+
+
+          <div class="social-links">
+            <a href="https://instagram.com/dankfranks.art" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="social-icon">
+              <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+              </svg>
+            </a>
+
+            <a href="https://www.facebook.com/dankfranks" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="social-icon">
+              <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+              </svg>
+            </a>
+
+            <a href="https://www.youtube.com/@DankFranks" target="_blank" rel="noopener noreferrer" aria-label="YouTube" class="social-icon">
+              <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"></path>
+                <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon>
+              </svg>
+            </a>
+
+            <a href="https://www.linkedin.com/in/skylarfranks/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="social-icon">
+              <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                <rect x="2" y="9" width="4" height="12"></rect>
+                <circle cx="4" cy="4" r="2"></circle>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="hud-heart-wrapper">
+          <svg viewBox="0 0 100 100" class="hud-heart-svg">
+            <defs>
+              <mask id="heart-mask">
+                <polygon points="50,88 12,50 12,30 25,17 42,17 50,28 58,17 75,17 88,30 88,50" fill="#ffffff" />
+              </mask>
+
+              <pattern id="moving-bars" width="100" height="20" patternUnits="userSpaceOnUse">
+                <rect y="0" width="100" height="10" style=" fill:var(--accent, #00f0ff);" />
+              </pattern>
+
+              <!-- HUD 2D Grid Overlay -->
+              <pattern id="hud-full-grid" width="4" height="4" patternUnits="userSpaceOnUse">
+                <rect x="0" y="0" width="4" height="1.5" fill="var(--bg)" opacity="0.85" />
+                <rect x="0" y="0" width="1.5" height="4" fill="var(--bg)" opacity="0.85" />
+              </pattern>
+            </defs>
+
+            <!-- 1. Frame Dark Background -->
+            <rect width="100" height="100" rx="8" fill="var(--accent-alt)" />
+
+            <g mask="url(#heart-mask)">
+              <rect y="-20" width="100" height="200" fill="url(#moving-bars)" class="bar-anim" />
+            </g>
+
+            <rect width="100" height="100" rx="8" fill="url(#hud-full-grid)" pointer-events="none" />
+          </svg>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

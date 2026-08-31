@@ -1,0 +1,2498 @@
+/* ==========================================================================
+   DF SYSTEM & THEME VARIABLES
+   ========================================================================== */
+:root {
+  --bg: #030712;
+  --surface: #0f172a;
+  --surface-hover: #0f172a;
+  --container-bg: #030712;
+  --border: #1e293b;
+  --border-bright: #38bdf8;
+  --text: #f1f5f9;
+  --muted: #64748b;
+  --accent: rgba(0, 240, 255);
+  --accent-alt: rgba(0, 240, 255);
+  --accent-glow: #00f0ff;
+  --radial-orange: rgba(235, 120, 30, 0.65);
+  --radial-cyan: rgba(0, 180, 216, 0.75); 
+  --radial-blue: rgba(0, 150, 214, 0.7);
+  --font-tech: 'JetBrains Mono', monospace;
+  --font-header: var(--font-tech);
+  --font-body: var(--font-tech);
+  --scanline-opacity: 0.6;
+  --stroke-color: #00f0ff;
+  --shadow:#00f0ff;
+  --bg-darkmode: rgba(3, 7, 18, 0.65);
+  --bg-lightmode: rgba(212, 224, 255, 0.65);
+}
+
+/* THEME PRESETS */
+:root[data-theme="cyber"] {
+  --bg: #030712;
+  --bg-darkmode: rgba(3, 7, 18, 0.65);
+  --bg-lightmode: rgb(236, 239, 247);
+  --text: #f1f5f9;
+  --muted: #64748b;
+  --accent: rgba(0, 240, 255, 1);
+  --accent-glow: rgba(0, 240, 255, 0.25);
+  --accent-alt: #121316;
+  --surface: #0f172a;
+  --surface-hover: #0f172a;
+  --container-bg: #030712;
+  --border: #1e293b;
+  --border-bright: #38bdf8;
+  --box-shadow:#00f0ff;
+  --stroke-color: #00f0ff;
+  --font-header: 'JetBrains Mono', monospace;
+  --font-body: 'JetBrains Mono', monospace;
+  --orb-1: rgba(235, 94, 40, 0.85);
+  --orb-2: rgba(235, 120, 30, 0.65);
+  --orb-3: rgba(0, 180, 216, 0.75);
+  --orb-4: rgba(0, 220, 255, 0.9);
+  --orb-5: rgba(0, 150, 214, 0.7);
+}
+
+:root[data-theme="amber"] {
+  --bg: #0f0b07;
+  --bg-darkmode: #0f0b07;
+  --bg-lightmode: rgb(255, 245, 231);
+  --text: #ffedd5;
+  --muted: #878683;
+  --accent: rgba(255, 153, 0, 1);
+  --accent-alt: #121316;
+  --accent-glow: rgba(255, 140, 0, 0.25);
+  --surface: #0f0b07;
+  --surface-hover: #131009;
+  --container-bg: #0f0b07;
+  --border: #1e3b39;
+  --border-bright: #14a3a5;
+  --box-shadow:none;
+  --stroke-color: rgba(255, 153, 0, 1);
+  --font-header: 'Orbitron', sans-serif;
+  --font-body: 'Share Tech Mono', monospace;
+  --orb-1: rgba(235, 94, 40, 0.85);
+  --orb-2: rgba(235, 120, 30, 0.65);
+  --orb-3: rgba(0, 180, 216, 0.75);
+  --orb-4: rgba(0, 220, 255, 0.9);
+  --orb-5: rgba(0, 150, 214, 0.7);
+}
+
+:root[data-theme="earth"] {
+  --bg: #f7f4ee;
+  --bg-darkmode: #2d2b2a;
+  --bg-lightmode: #f7f4ee;
+  --text: #2d2b2a; 
+  --muted: #736d67;
+  --accent: rgba(59, 165, 118, 1); 
+  --accent-alt: #e7dace;
+  --accent-glow: rgba(255, 170, 0, 0.25);
+  --surface: #ede8df;   
+  --surface-hover: #f4efe7;
+  --container-bg: #f1ede4; 
+  --border: #d6cfc4;   
+  --border-bright: #bc6c25;
+  --stroke-color: #e7dace;
+  --font-header: 'Inter', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  --scanline-opacity: 0;
+  --accent-glow: none;
+  --box-shadow:none;
+  --orb-1: rgba(76, 234, 171, 0.65);
+  --orb-2: rgba(255, 208, 148, 0.55);
+  --orb-3: rgba(78, 227, 175, 0.6); 
+  --orb-4: rgba(66, 241, 177, 0.5); 
+  --orb-5: rgba(255, 208, 148, 0.55);
+}
+
+/* GLOBAL RESET */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  padding: 2rem;
+  position: relative;
+  overflow-x: hidden;
+  line-height: 1.5;
+}
+
+/* Ambient CRT Scanline Effect */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0; left: 0; width: 100vw; height: 100vh;
+  background: linear-gradient(rgba(5, 4, 4, 0) 50%, rgba(0, 0, 0, 0.25) 50%);
+  background-size: 100% 4px;
+  z-index: 99;
+  pointer-events: none;
+  opacity: var(--scanline-opacity, 0.6); /* Fallback to 0.6 */
+}
+
+.container, .canvas { 
+  max-width: 1200px; 
+  margin: 0 auto; 
+  position: relative; 
+  z-index: 2; 
+}
+
+body.no-scanlines {
+  --scanline-opacity: 0;
+}
+
+
+
+/* ==========================================================================
+   HOMEPAGE COMPONENTS & HUD CONTROLS
+   ========================================================================== */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 2rem;
+  margin: 1.5rem 0 5rem 0;
+  position: relative;
+}
+
+.header-text-group { max-width: 600px; }
+
+h1 {
+  font-family: var(--font-header);
+  font-size: clamp(2.2rem, 5vw, 4rem);
+  font-weight: 800;
+  text-transform: uppercase;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+h1 span {
+  color: var(--accent);
+  text-shadow: 0 0 15px var(--accent-glow);
+}
+
+.tagline {
+  font-size: 1.1rem;
+  color: var(--muted);
+  margin-top: 1.5rem;
+  max-width: 750px;
+  line-height: 1.6;
+  border-left: 2px solid var(--accent);
+  padding-left: 1rem;
+}
+.tagline strong { color: var(--text); }
+
+/* HUD METADATA BAR */
+.hud-meta {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.75rem;
+  color: var(--muted);
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 0.5rem;
+  margin-bottom: 2rem;
+  letter-spacing: 0.1em;
+}
+.hud-status { color: var(--accent); display: flex; align-items: center; gap: 0.5rem; }
+.status-dot { 
+  width: 8px; height: 8px; 
+  background: var(--accent); 
+  border-radius: 50%; 
+  box-shadow: 0 0 8px var(--accent); 
+  animation: pulse 2s infinite; 
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+/* HUD CONTROL MODULE */
+.hud-header-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1.5rem;
+}
+
+.hud-control-module {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  padding: 0.75rem 1.25rem;
+  background: var(--bg);
+  border: 0px solid var(--accent-alt);
+  border-radius: 12px;
+  box-shadow: 0 0 12px var(--box-shadow);
+}
+
+/* Interactive Range Input Container */
+.hud-slider-decoration {
+  width: 80px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.hud-slider-input {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 2px;
+  background: var(--accent);
+  box-shadow: 0 0 6px var(--accent-glow);
+  outline: none;
+  cursor: pointer;
+}
+
+/* Slider Handle (Chrome/Safari) */
+.hud-slider-input::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 12px;
+  height: 18px;
+  border: 2px solid var(--accent);
+  border-radius: 4px;
+  background: var(--bg);
+  cursor: pointer;
+}
+
+/* Slider Handle (Firefox) */
+.hud-slider-input::-moz-range-thumb {
+  width: 12px;
+  height: 18px;
+  border: 2px solid var(--accent);
+  border-radius: 4px;
+  background: var(--bg);
+  cursor: pointer;
+}
+
+/* Dials Layout */
+.hud-dials {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.svg-knob {
+  position: relative;
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+  display: inline-block;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.knob-svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+/* Background outer ring */
+.knob-bg {
+  fill: none;
+  stroke: var(--accent, #00F0FF);
+  stroke-width: 2.5;
+}
+
+/* Dynamic pie slice wedge with inner radial border line */
+.knob-wedge {
+  fill: var(--accent, rgba(0, 240, 255, 0.25)); 
+  stroke: var(--accent, #00F0FF);           
+  stroke-width: 2.5px;        
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+
+/* Hide native range inputs offscreen while retaining focus & event listeners */
+.sr-only-knob {
+  position: absolute;
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  margin: 0;
+  cursor: pointer;
+  pointer-events: none;
+}
+
+.dial-container {
+  position: relative;
+  width: 24px;
+  height: 24px;
+}
+
+.dial-input {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 24px;
+  height: 24px;
+  border: 2px solid var(--accent);
+  border-radius: 50%;
+  /* Dynamic conic gradient slice using JS variable --knob-pct */
+  background: conic-gradient(
+    var(--accent-glow, rgba(0, 240, 255, 0.35)) 0deg var(--knob-angle, 0deg),
+    transparent var(--knob-angle, 0deg) 360deg
+  );
+  cursor: pointer;
+  outline: none;
+  box-shadow: 0 0 6px var(--accent-glow);
+}
+
+/* Remove center pointer ticks if you used pseudo-elements earlier */
+.dial-input::after {
+  display: none;
+}
+
+/* Dial Tick Indicator */
+.dial-tick {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 45%;
+  height: 2px;
+  background: var(--accent);
+  transform-origin: left center;
+  transform: rotate(var(--knob-angle, -45deg));
+  pointer-events: none;
+}
+
+.hud-dials { display: flex; gap: 0.5rem; }
+.dial {
+  width: 24px; height: 24px;
+  border: 2px solid var(--accent);
+  border-radius: 50%;
+  position: relative;
+}
+.dial::after {
+  content: '';
+  position: absolute;
+  top: 50%; left: 50%;
+  width: 45%; height: 2px;
+  background: var(--accent);
+  transform-origin: left center;
+  transform: rotate(-45deg);
+}
+
+.hud-preset-buttons { display: flex; gap: 0.5rem; }
+.preset-btn {
+  width: 38px; height: 22px;
+  border: 1.5px solid var(--accent);
+  border-radius: 5px;
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.preset-btn.active, .preset-btn:hover {
+  background: var(--accent);
+  box-shadow: 0 0 10px var(--accent);
+}
+
+/* ==========================================================================
+   HUD BANNER (FLUID UPDATE)
+   ========================================================================== */
+
+.hud-header-banner {
+  position: relative;
+  width: 100%;
+  
+  /* FLUID HEIGHT: Replaces fixed 350px. Scales between 140px and 360px */
+  height: clamp(140px, 35vw, 360px);
+  aspect-ratio: 16 / 9; /* Ensures cinematic ratio * fluidly* */
+
+  overflow: hidden;
+  margin-bottom: 2rem;
+  background-color: var(--bg);
+  
+  /* Use Flex instead of Absolute positioning for centering children */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hud-header-banner #light-canvas {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  z-index: 1;
+}
+
+/* Updated centering logic for fluid scaling */
+.hud-header-banner .logo-container {
+  position: absolute;
+  top: 68%;
+  left: 55%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  
+  width: 90%;
+  max-width: 650px;
+  height: auto;
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  pointer-events: none;
+}
+
+/* Ensures the SVG behaves inside the fluid flex container */
+.hud-logo-svg {
+  width: 100%;
+  height: auto; /* Maintain aspect ratio */
+  max-height: 100%;
+  object-fit: contain; /* Keeps vector proportional */
+}
+
+.hud-logo-svg path {
+  fill: var(--bg);
+  transition: fill 0.3s ease;
+}
+
+.hud-header-banner .grid-overlay {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  z-index: 4;
+  pointer-events: none;
+  background-image: 
+    linear-gradient(to right, var(--bg) 3px, transparent 3px),
+    linear-gradient(to bottom, var(--bg) 3px, transparent 3px);
+  background-size: var(--grid-size, 7px) var(--grid-size, 7px);
+}
+
+/* GATES GRID */
+.gate-title {
+  font-family: var(--font-header);
+  font-weight: 800;
+  text-transform: uppercase;
+  font-size: 1rem;
+  margin-bottom: 2rem;
+  letter-spacing: 0.15em;
+  color: var(--accent);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.gates-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 6rem;
+}
+
+.gate-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 2rem;
+  text-decoration: none;
+  color: var(--text);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 360px;
+  position: relative;
+  clip-path: polygon(
+    0 0, 
+    calc(100% - 15px) 0, 
+    100% 15px, 
+    100% 100%, 
+    15px 100%, 
+    0 calc(100% - 15px)
+  );
+  backdrop-filter: blur(8px);
+}
+
+.gate-card:hover {
+  border-color: var(--card-accent, var(--border-bright));
+  background: var(--surface-hover, var(--border-bright));
+  box-shadow: 0 0 25px var(--card-glow, var(--accent-glow));
+  transform: translateY(-4px);
+}
+
+.gate-num { font-size: 0.75rem; font-weight: bold; color: var(--muted); letter-spacing: 0.1em; }
+.gate-name {
+  font-family: var(--font-header);
+  font-size: 1.8rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  line-height: 1.1;
+  margin: 1.5rem 0;
+}
+.gate-card:hover .gate-name { color: var(--card-accent, var(--accent)); }
+
+.gate-preview {
+  width: 100%;
+  height: 220px;
+  margin: 1rem 0;
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.gate-preview img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease, filter 0.4s ease;
+}
+.gate-card:hover .gate-preview {
+  border-color: var(--card-accent, var(--accent));
+  box-shadow: 0 0 10px var(--card-glow, var(--accent-glow));
+}
+.gate-card:hover .gate-preview img {
+  transform: scale(1.06);
+  filter: brightness(1) contrast(1.15);
+}
+
+.case-links {
+  list-style: none;
+  margin-top: auto;
+  border-top: 1px solid var(--border);
+  padding-top: 1.2rem;
+}
+.case-links li {
+  font-size: 0.85rem;
+  color: var(--muted);
+  margin-bottom: 0.6rem;
+  display: flex;
+  align-items: center;
+}
+.case-links li::before {
+  content: '>';
+  color: var(--card-accent, var(--accent));
+  margin-right: 0.6rem;
+  font-weight: bold;
+}
+.gate-card:hover .case-links li { color: var(--text); }
+
+/* SLIDER BANNER */
+/* SLIDER BANNER FRAME */
+.featured-banner-slider {
+  position: relative !important;
+  width: 100%;
+  aspect-ratio: 16 / 6;
+  margin: 2rem 0;
+  overflow: hidden;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  clip-path: polygon(
+    16px 0, 
+    100% 0, 
+    100% calc(100% - 16px), 
+    calc(100% - 16px) 100%, 
+    0 100%, 
+    0 16px
+  );
+}
+
+/* Prevent scan-line from shifting layout content downward */
+.featured-banner-slider .scanline {
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  pointer-events: none !important;
+  z-index: 5 !important;
+}
+
+.slider-track {
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.slide {
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  display: block !important;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.slide.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.slide img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  display: block !important;
+}
+
+.slide-caption {
+  position: absolute !important;
+  bottom: 16px !important;
+  left: 16px !important;
+  z-index: 10 !important;
+  
+  /* Restores background frame styling */
+  background: rgba(3, 7, 18, 0.85) !important;
+  color: var(--accent) !important;
+  font-family: var(--font-header) !important;
+  font-size: .85rem !important;
+  padding: 6px 12px !important;
+  border: 1px solid var(--border) !important;
+  clip-path: polygon(4px 0, 100% 0, 100% calc(100% - 4px), calc(100% - 4px) 100%, 0 100%, 0 4px) !important;
+  
+  /* Ensures click events bubble up to the link/lightbox trigger */
+  pointer-events: none !important; 
+}
+
+.lightbox-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(3, 7, 18, 0.85);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.lightbox-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.lightbox-frame {
+  position: relative;
+  max-width: 90vw;
+  max-height: 85vh;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 1rem;
+  clip-path: polygon(16px 0, 100% 0, 100% calc(100% - 16px), calc(100% - 16px) 100%, 0 100%, 0 16px);
+}
+
+.lightbox-frame img {
+  max-width: 100%;
+  max-height: 75vh;
+  object-fit: contain;
+  display: block;
+}
+
+.lightbox-caption-text {
+  margin-top: 0.75rem;
+  font-family: var(--font-header);
+  font-size: 0.85rem;
+  color: var(--accent);
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 8px;
+  right: 12px;
+  background: none;
+  border: none;
+  color: var(--text);
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.slider-btn {
+  position: absolute !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  z-index: 10 !important;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  color: var(--accent);
+  font-family: var(--font-header);
+  font-size: 1rem;
+  font-weight: bold;
+  width: 36px;
+  height: 36px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  clip-path: polygon(6px 0, 100% 0, 100% calc(100% - 6px), calc(100% - 6px) 100%, 0 100%, 0 6px);
+}
+
+.prev-btn { left: 16px !important; }
+.next-btn { right: 16px !important; }
+
+.slider-btn:hover {
+  background: var(--accent);
+  color: var(--bg);
+  border-color: var(--accent);
+  box-shadow: 0 0 10px var(--accent-glow);
+}
+
+
+
+/* --- TOP NAV BAR LAYOUT --- */
+.comic-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start; /* Keeps top edge aligned with Go Home button */
+  width: 100%;
+  margin-bottom: 4rem;
+  gap: 1rem;
+}
+
+/* Link Group Base Styles */
+.nav-index-links {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  flex-wrap: wrap; /* Allows natural stacking on tight screens */
+}
+
+/* Button Formatting with Fixed Width */
+.index-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.5rem;
+  width: 170px;
+  padding: 0.5rem 0.75rem;
+  background: var(--bg, #f1f5f9);
+  border: 1px solid var(--border, #1e293b);
+  color: var(--text, #f1f5f9);
+  font-family: var(--font-tech, 'JetBrains Mono', monospace);
+  font-size: 0.95rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  font-family: var(--font-tech, 'JetBrains Mono', monospace);
+  font-size: 0.85rem;
+  transition: all 0.2s ease;
+  clip-path: polygon(4px 0, 100% 0, 100% calc(100% - 4px), calc(100% - 4px) 100%, 0 100%, 0 4px);
+  box-sizing: border-box;
+  
+}
+
+.index-btn .index-num {
+  color: var(--accent, #00f0ff);
+  font-weight: 800;
+  flex-shrink: 0;
+}
+
+.index-btn .index-label {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: var(--text);
+}
+
+.index-btn:hover {
+  border-color: var(--accent, #00f0ff);
+  background: var(--accent-glow, rgba(0, 240, 255, 0.2));
+  color: var(--accent);
+  transform: translateY(-2px);
+  box-shadow: 0 0 10px var(--accent-glow, rgba(0, 240, 255, 0.25));
+}
+
+/* --- SMALL & MOBILE SCREENS --- */
+@media (max-width: 768px) {
+  .nav-index-links {
+    flex-direction: column;
+    align-items: flex-end;
+  }
+
+  .index-btn:hover {
+    transform: translateX(-3px);
+  }
+
+  .section-header {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+
+  .header-title-zone h2 {
+    font-size: 1.75rem;
+  }
+}
+
+#circuit-canvas {
+  position: absolute; /* Changed from fixed to absolute */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0; /* Keep it behind your text content */
+}
+
+/* Optional: Dial back or hide the effect on your Minimal Earth-Tone preset */
+:root[data-theme="minimal"] #circuit-canvas {
+  opacity: 0.15; 
+}
+
+/* ==========================================================================
+   FOOTER / SOCIAL / HEART
+   ========================================================================== */
+   
+/* FOOTER ABOUT BUTTON VARIANT */
+.footer-about-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.85rem 1.5rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  font-family: inherit;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--fg);
+  text-decoration: none;
+  transition: all 0.2s ease;
+  
+  /* FLIPPED CORNER CUTS: Top-Left & Bottom-Right clipped instead (or swap to 0 10px / 100% calc(100%-10px)) */
+  clip-path: polygon(
+    0 0, 
+    calc(100% - 10px) 0, 
+    100% 10px, 
+    100% 100%, 
+    10px 100%, 
+    0 calc(100% - 10px)
+  );
+  
+  /* ADJUST RIGHT MARGIN HERE */
+  margin-right: 2rem; 
+}
+
+.footer-about-btn:hover {
+  border-color: var(--border-bright);
+  background: var(--surface-hover);
+  color: var(--accent);
+}
+
+.skills-section {
+  border-top: 1px solid var(--border);
+  padding-top: 4rem;
+  margin-bottom: 4rem;
+}
+.skills-layout {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 4rem;
+  width: 100%;
+}
+.skills-left h2 {
+  font-family: var(--font-header);
+  font-size: 1.8rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+.skills-left p {
+  color: var(--muted);
+  margin-top: 0.5rem;
+  margin-bottom: 8px;
+  font-size: 0.9rem;
+}
+
+.skills-bag { display: flex; flex-wrap: wrap; gap: 0.8rem; }
+.skill-sticker {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 0.6rem 1.2rem;
+  font-size: 0.85rem;
+  letter-spacing: 0.05em;
+  color: var(--text);
+  display: flex; align-items: center; gap: 0.5rem;
+  transition: all 0.2s ease;
+  clip-path: polygon(8px 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%, 0 8px);
+}
+.skill-sticker::before { content: ""; width: 4px; height: 4px; background: var(--muted); }
+.skill-sticker:hover {
+  border-color: var(--accent);
+  background: var(--accent-glow);
+  transform: translateY(-2px);
+}
+.skill-sticker:hover::before { background: var(--accent); box-shadow: 0 0 6px var(--accent); }
+
+.social-links { display: flex; gap: 16px; align-items: center; }
+.social-icon {
+  display: inline-flex; align-items: center; justify-content: center;
+  color: #8a8f98;
+  transition: all 0.25s ease;
+  text-decoration: none;
+}
+.social-icon:hover { color: var(--accent); transform: translateY(-2px); }
+.social-icon svg { width: 25px; height: 25px; }
+
+.hud-heart-wrapper { width: 110px; height: 110px; flex-shrink: 0; }
+.hud-heart-svg {
+  width: 100%; height: 100%;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+.bar-anim { will-change: transform; animation: moveBarsUp 1.2s linear infinite; }
+
+@keyframes moveBarsUp {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-20px); }
+}
+
+/* ==========================================================================
+        ----- REUSABLE CASE STUDY SECTION HEADERS --- 
+========================================================================== */
+.section-header {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  align-items: center;
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px dashed var(--border, #1e293b);
+  width: 100%;
+  box-sizing: border-box;
+  overflow: hidden; /* Prevents rogue flex/grid children from overflowing */
+}
+
+/* Modifier for stacked logo layout */
+.section-header.header-stacked {
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+}
+
+.section-header.header-stacked .header-content-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  align-items: center;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.header-title-zone {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+/* Fluid Heading Scaling */
+.header-title-zone h2 {
+  font-family: var(--font-header, 'Fahkwang', 'Benzin', sans-serif);
+  font-size: clamp(1.1rem, 5vw, 2.25rem); 
+  font-weight: 900;
+  line-height: 1.1;
+  text-transform: uppercase;
+  color: var(--text, #ffffff);
+  letter-spacing: 0.04em;
+  margin: 0;
+  
+  /* Text Wrapping Rules */
+  white-space: normal;
+  overflow-wrap: break-word;
+  word-break: normal;
+  hyphens: manual;
+
+  background: linear-gradient(
+    to bottom,
+    #ffffff 50%,
+    rgba(255, 255, 255, 0.75) 50%
+  );
+  background-size: 100% 4px;
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+/* Fluid Logo Scaling */
+.header-logo {
+  height: clamp(40px, 7vw, 40px);
+  width: auto;
+  max-width: 100%;
+  display: block;
+  object-fit: contain;
+}
+
+.header-logo-large {
+  height: clamp(40px, 7vw, 90px);
+  width: auto;
+  max-width: 100%;
+  display: block;
+  object-fit: contain;
+}
+
+.keep-inline {
+  white-space: nowrap;
+}
+
+.keep-inline span {
+  display: inline !important;
+}
+
+.header-title-zone .accent-text {
+  display: block;
+  color: var(--accent, #00f0ff);
+  background: linear-gradient(
+    to bottom,
+    var(--accent, #00f0ff) 50%,
+    rgba(0, 240, 255, 0.6) 50%
+  );
+  background-size: 100% 4px;
+  -webkit-background-clip: text;
+  background-clip: text;
+  text-shadow: 0 0 15px var(--accent-glow, rgba(0, 240, 255, 0.45));
+}
+
+/* Fluid Subtitle Scaling */
+.header-subtitle {
+  font-family: var(--font-tech, 'JetBrains Mono', monospace);
+  font-size: clamp(0.8rem, 1.5vw, 0.95rem);
+  line-height: 1.6;
+  color: var(--muted, #94a3b8);
+  margin: 0;
+  max-width: 480px;
+  width: 100%;
+  box-sizing: border-box;
+
+  position: relative;
+  z-index: 5;
+  background: var(--bg);
+  padding: 0.4rem 0.75rem;
+  border-left: 2px solid var(--accent);
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+  
+  /* Text Wrapping Rules */
+  white-space: normal;
+  overflow-wrap: break-word;
+  word-break: normal;
+}
+
+.vertical-grid-container {
+  width: 100%;
+  max-width: 100%;
+  margin: 2rem 0;
+  box-sizing: border-box;
+}
+
+.grid-section-title {
+  font-size: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+/* 6-Column Responsive Grid Layout */
+.vertical-image-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 1.25rem;
+  align-items: center;
+  width: 100%;
+}
+
+.vertical-image-grid .grid-item {
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;
+  border-radius: 4px;
+  transition: transform 0.25s ease, opacity 0.25s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.vertical-image-grid .grid-item:hover {
+  transform: translateY(-4px);
+}
+
+.vertical-image-grid .grid-item img {
+  width: 100%;
+  height: auto;
+  max-height: 520px; /* Constrains vertical height on ultra-wide screens */
+  object-fit: contain;
+  display: block;
+}
+
+/* --- Responsive Breakpoints --- */
+
+/* Tablet: Switch to 3 columns x 2 rows */
+@media (max-width: 900px) {
+  .vertical-image-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+  }
+}
+
+/* Mobile: Switch to 2 columns x 3 rows */
+@media (max-width: 550px) {
+  .vertical-image-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+  }
+}
+
+/* --- Responsive Mobile Breakpoint --- */
+@media (max-width: 768px) {
+  /* Force all header layout variations into a single stacked column */
+  .section-header,
+  .section-header.header-stacked,
+  .section-header.header-stacked .header-content-wrapper,
+  .header-content-wrapper {
+    grid-template-columns: 1fr !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    width: 100% !important;
+    gap: 1.25rem !important;
+  }
+
+  /* Font scaling for narrow viewports */
+  .header-title-zone h2 {
+    font-size: clamp(0.95rem, 5.5vw, 1.5rem);
+  }
+
+  .header-subtitle {
+    max-width: 100% !important;
+    font-size: clamp(0.75rem, 3.5vw, 0.875rem);
+  }
+
+  /* Override white-space constraint so text wraps at spaces */
+  .keep-inline {
+    white-space: normal !important;
+  }
+}
+
+
+/* --- SMALL & MOBILE SCREENS --- */
+@media (max-width: 768px) {
+  .nav-index-links {
+    flex-direction: column;
+    align-items: flex-end; /* Keeps items pinned to top-right */
+  }
+
+  .index-btn:hover {
+    transform: translateX(-3px); /* Shift left on hover when stacked */
+  }
+}
+
+/* ==========================================================================
+   CASE STUDY COMPONENTS (HOMEPAGE MATCHING BOX STYLES)
+   ========================================================================== */
+
+.back-lnk {
+  color: var(--accent);
+  text-decoration: none;
+  font-family: var(--font-tech);
+  font-weight: 700;
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+  display: inline-block; /* Helps text-shadow and transforms render cleanly */
+}
+
+.back-lnk:hover {
+  text-shadow: 0 0 8px var(--accent-glow);
+  color: #ffffff; /* Add brightness on hover */
+}
+
+.scroll-top-btn {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 90;
+  
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.6rem 0.9rem;
+  
+  background: rgba(3, 11, 24, 0.85);
+  border: 1px solid var(--border);
+  color: var(--accent);
+  
+  font-family: var(--font-tech);
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+  
+  /* Chamfered corners matching HUD components */
+  clip-path: polygon(
+    0 0, 
+    calc(100% - 8px) 0, 
+    100% 8px, 
+    100% 100%, 
+    8px 100%, 
+    0 calc(100% - 8px)
+  );
+  
+  /* Hidden by default until scrolled down */
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(10px);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.scroll-top-btn.visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.scroll-top-btn:hover {
+  border-color: var(--accent);
+  background: var(--surface);
+  color: #ffffff;
+  box-shadow: 0 0 15px var(--accent-glow);
+  transform: translateY(-3px);
+}
+
+.scroll-top-btn .btn-arrow {
+  font-size: 0.9rem;
+  line-height: 1;
+}
+
+/* --- CASE STUDY SECTION CONTAINERS --- */
+
+.case-study-block-wide {
+  width: 100%;
+  max-width: 1200px; /* or 100% if edge-to-edge */
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+.case-study-block {
+  width: 100%;
+  max-width: 100%; /* Ensure no max-width cap is constraining it */
+  box-sizing: border-box;
+}
+.case-study-block {
+  width: 100%;
+  max-width: 1200px; /* or 100% if edge-to-edge */
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+/* Add breathing room around section headers */
+.section-header {
+  margin-top: 4rem !important;
+  margin-bottom: 2.5rem !important;
+  padding-top: 3rem !important;
+}
+
+/* Ensure dotted section divider lines have clearance */
+
+
+.case-study-block .header-title-zone h2 {
+  font-size: 4rem;
+  line-height: 0.95;
+  margin: 0;
+}
+
+.case-study-block .header-subtitle {
+  max-width: 520px;
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Offset fixed header overlap so sections aren't hidden under top bar */
+section[id] {
+  scroll-margin-top: 80px; /* Adjust height based on your sticky navbar */
+}
+
+/* Scope full-width expansion strictly to Case Study 02 */
+#case-study-02 .panel-display {
+  display: block !important;
+  width: 100% !important;
+}
+
+#case-study-02 .panel-display .youtube-frame-container,
+#case-study-02 .frame.youtube-frame-container {
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
+/* Scope full-width expansion strictly to Case Study 02 */
+#case-study-05 .panel-display-banner-electronics {
+  display: flex !important;
+  width: 100% !important;
+  max-width: 100% !important; 
+  height: 300px !important; 
+}
+
+
+.frame-img-single {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain !important; /* Scales artwork down to fit completely inside */
+  object-position: center !important; /* Keeps graphic centered within the letterbox area */
+  display: block !important;
+  aspect-ratio: 16 / 9 !important; /* Force fixed ratio */
+}
+
+
+/* --- PANEL DISPLAY GRID --- */
+/* Ensure the grid wrapper sits side-by-side on desktop */
+/* ==========================================================================
+   STYLIZED VERTICAL ZOOM FRAME
+   ========================================================================== */
+
+/* CSS Fix */
+.panel-display {
+  display: flex;
+  gap: 20px;
+  width: 100%;
+  margin-top: 3rem;
+}
+
+.panel-display.panel-full .frame {
+  flex: 1 1 100%;
+  width: 100%;
+  height: 100%;
+}
+
+.frame-img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+
+
+/* --- MAIN PANEL FRAME (CHAMFERED CORNERS & HOVER GLOWS) --- */
+.frame {
+  position: relative;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 0;
+  overflow: hidden;
+  clip-path: polygon(
+    0 0, 
+    calc(100% - 16px) 0, 
+    100% 16px, 
+    100% 100%, 
+    16px 100%, 
+    0 calc(100% - 16px)
+  );
+  transition: all 0.3s ease;
+}
+
+.frame.lightbox-trigger {
+  cursor: pointer;
+}
+
+.frame:hover {
+  border-color: var(--accent);
+  box-shadow: 0 0 15px var(--accent-glow);
+}
+
+.frame-img {
+  width: cover;
+  height: 380px;
+  object-fit: cover;
+  display: block;
+  filter: brightness(0.85) contrast(1.1);
+  transition: transform 0.4s ease, filter 0.4s ease;
+}
+
+
+.frame:hover .frame-img {
+  transform: scale(1.02);
+  filter: brightness(0.95) contrast(1.15);
+}
+
+/* --- STICKER LABEL OVERLAY --- */
+.sticker-label {
+  position: absolute;
+  bottom: 12px; 
+  left: 16px;
+  top: auto;
+  z-index: 10;
+  background: rgba(3, 7, 18, 0.85);
+  border: 1px solid var(--border);
+  color: var(--accent);
+  padding: 4px 10px;
+  font-family: var(--font-header);
+  font-size: 0.9rem;
+  font-weight: 700;
+  transition: all 0.3s ease;
+}
+
+.frame:hover .sticker-label {
+  border-color: var(--accent);
+  box-shadow: 0 0 8px var(--accent-glow);
+}
+
+/* --- GRID STORY & SPEC CARDS --- */
+/* Force Row 1 into its own full-width row */
+.grid-story {
+  display: grid !important;
+  grid-template-columns: 3fr 1fr !important; /* 75% Text / 25% Specs */
+  gap: 2.5rem !important;
+  width: 100% !important;
+  grid-column: 1 / -1 !important; /* Spans full width of any parent grid */
+  align-items: start !important;
+  overflow: visible !important;
+  height: auto !important;
+  max-height: none !important;
+
+}
+
+.story-block h3 {
+  font-family: var(--font-header);
+  font-size: 1.25rem;
+  margin-bottom: .25rem;
+  margin-top: 1rem;
+  color: var(--text);
+}
+
+.story-block p {
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.spec-card {
+  padding: 1.5rem 1.75rem !important; /* Internal spacing from borders */
+  box-sizing: border-box !important;  /* Keeps total width intact */
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 1.5rem !important;            /* Vertical space between spec items */
+  width: 100% !important;
+  overflow: visible !important;
+  margin-bottom: 1rem;
+}
+
+.spec-card.frame {
+  border: none !important;
+  box-shadow: none !important;
+  outline: none !important;
+  background: transparent !important;
+  padding: .2 !important; /* Removes internal padding since there's no frame */
+}
+
+.spec-title {
+  font-size: 0.75rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-family: var(--font-header);
+  
+}
+
+.spec-value {
+  font-size: 0.9rem !important;
+  color: var(--text) !important;
+  font-weight: bold !important;
+  margin-top: 0.2rem !important;
+  line-height: 1.4 !important; /* Prevents text clipping on multi-line text */
+}
+
+/* Force Row 2 into its own full-width row below Row 1 */
+.archive-section {
+  width: 100% !important;
+  grid-column: 1 / -1 !important; /* Spans full width of any parent grid */
+  margin-top: 2rem !important;
+  margin-bottom: 2rem !important;
+  clear: both !important;
+}
+
+.archive-title {
+  font-family: var(--font-header) !important;
+  font-size: 0.85rem !important;
+  color: var(--accent) !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.05em !important;
+  margin-bottom: 1rem !important;
+}
+
+.archive-strip {
+  display: grid !important;
+  grid-template-columns: repeat(4, 1fr) !important; /* 3 Equal slots */
+  gap: .9rem !important;
+  width: 100% !important;
+}
+
+.archive-box {
+  display: block !important;
+  position: relative !important;
+  width: 100% !important;
+  aspect-ratio: 1 / 1 !important;
+  background: var(--surface) !important;
+  border: 1px solid var(--border) !important;
+  overflow: hidden !important;
+  text-decoration: none !important;
+}
+
+.archive-img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  display: block !important;
+}
+
+/* --- LIGHTBOX CONTAINER & IMAGE CONSTRAINT --- */
+.hud-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: rgba(0, 0, 0, 0.92);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+}
+
+.hud-lightbox.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.lightbox-content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  max-width: 90vw;
+  max-height: 90vh;
+}
+
+/* Fixes blown-out image size */
+.lightbox-content img,
+#lightboxImg {
+  max-width: 85vw !important;
+  max-height: 80vh !important;
+  width: auto !important;
+  height: auto !important;
+  object-fit: contain !important;
+  border: 1px solid var(--border, #333);
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.8);
+}
+
+.lightbox-caption {
+  font-family: var(--font-header, sans-serif);
+  font-size: 0.85rem;
+  color: var(--accent, #ff9900);
+  margin-top: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+/* --- STYLIZED HUD ARROWS --- */
+.lightbox-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(10, 10, 10, 0.85);
+  border: none;
+  color: var(--accent, #ff9900);
+  font-family: var(--font-header, monospace);
+  font-size: 1.5rem;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10000;
+  transition: all 0.2s ease;
+  user-select: none;
+}
+
+.lightbox-arrow:hover {
+  background: var(--accent, #ff9900);
+  color: #000;
+  box-shadow: 0 0 15px var(--accent, #ff9900);
+}
+
+.lightbox-prev { left: 2rem; }
+.lightbox-next { right: 2rem; }
+
+.lightbox-close {
+  position: absolute;
+  top: 1.5rem;
+  right: 2rem;
+  background: none;
+  border: none;
+  color: var(--muted, #ff9900);
+  font-size: 1.5rem;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.lightbox-close:hover {
+  background: none;
+  color: var(--accent, #ff9900);
+}
+
+
+
+
+
+/* ==========================================================================
+   PANEL DISPLAY & FRAME ZOOM (MAGNIFYING GLASS) INTEGRATION
+   Kept at the top level (outside any @media query) so the hover-magnifier
+   works on all screen sizes, not just narrow ones.
+   ========================================================================== */
+
+.panel-display {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  align-items: start; /* right column no longer stretches to match the tall left frame */
+  margin-bottom: 2rem;
+  width: 100%;
+}
+
+/* Inherits chamfered corners & dark background from your .frame class */
+/* Container bounds */
+.frame-zoom {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  min-height: 520px;
+  overflow: hidden;
+  cursor: crosshair;
+  padding: 0; /* full-bleed inside the stylized frame */
+}
+
+.zoom-viewport {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.zoom-viewport .zoom-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transform-origin: 50% 50%; /* overridden live via JS to track the cursor */
+  transition: transform 0.25s ease-out, transform-origin 0.1s ease-out;
+  will-change: transform;
+  pointer-events: none;
+}
+
+/* Scale up on hover; JS sets transform-origin per mousemove so the
+   zoomed-in point tracks the cursor across the whole image. */
+.frame-zoom:hover .zoom-img {
+  transform: scale(2.5);
+}
+
+.frame-zoom .sticker-label {
+  position: absolute;
+  bottom: 1rem;
+  left: 1rem;
+  z-index: 10;
+  pointer-events: none;
+}
+
+/* ==========================================================================
+   RIGHT COLUMN STACK (slider + caption text underneath)
+   ========================================================================== */
+
+.panel-right-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  height: 100%;
+}
+
+.panel-right-caption {
+  color: var(--text-muted, #94a3b8);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* ==========================================================================
+   BEFORE / AFTER COMPARISON SLIDER
+   ========================================================================== */
+
+.compare-slider {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  min-height: 320px;
+  padding: 0;
+}
+
+.compare-viewport {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  cursor: ew-resize;
+  --compare-pos: 50%;
+}
+
+.compare-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  pointer-events: none;
+  user-select: none;
+}
+
+.compare-after {
+  z-index: 1;
+}
+
+/* Clips the "before" image to only the left portion, up to the handle */
+.compare-before-wrap {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  overflow: hidden;
+  clip-path: inset(0 calc(100% - var(--compare-pos, 50%)) 0 0);
+  will-change: clip-path;
+}
+
+.compare-before-wrap .compare-img {
+  position: absolute;
+  inset: 0;
+}
+
+/* Small "Before" / "After" corner tags */
+.compare-tag {
+  position: absolute;
+  top: 0.75rem;
+  z-index: 5;
+  background: rgba(3, 7, 18, 0.85);
+  border: 1px solid var(--border);
+  color: var(--accent);
+  padding: 3px 8px;
+  font-family: var(--font-header);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  pointer-events: none;
+}
+
+.compare-tag-before {
+  left: 0.75rem;
+}
+
+.compare-tag-after {
+  right: 0.75rem;
+}
+
+/* Draggable divider line + grip handle, visually tracks --compare-pos */
+.compare-handle {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: var(--compare-pos);
+  transform: translateX(-50%);
+  z-index: 6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.compare-handle-line {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: var(--accent);
+  box-shadow: 0 0 8px var(--accent-glow);
+}
+
+.compare-handle-grip {
+  position: relative;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: var(--surface);
+  border: 2px solid var(--accent);
+  color: var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 10px var(--accent-glow);
+}
+
+/* The actual control: an invisible range input spans the full viewport
+   so drag/click/keyboard all move the comparison position naturally. */
+.compare-range {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  opacity: 0;
+  cursor: ew-resize;
+  z-index: 10;
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+}
+
+.compare-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 40px;
+  height: 1000px;
+  cursor: ew-resize;
+  background: transparent;
+}
+
+.compare-range::-moz-range-thumb {
+  width: 40px;
+  height: 1000px;
+  cursor: ew-resize;
+  background: transparent;
+  border: none;
+}
+
+.compare-range:focus-visible ~ .compare-handle .compare-handle-grip {
+  box-shadow: 0 0 0 3px var(--accent-glow), 0 0 10px var(--accent-glow);
+}
+
+/* ==========================================================================
+   FIXED-HEIGHT 12-AVATAR GRID FRAME
+   ========================================================================== */
+
+/* Outer Frame Container */
+/* Container Box */
+/* Outer Frame Box */
+.panel-right-grid {
+  position: relative;
+  width: 100%;
+  padding: .75rem 0.75rem 0.75rem 0.75rem;
+  background: none;
+  border: 1px solid var(--border);
+  box-sizing: border-box;
+}
+
+/* Fluid, Proportional Grid Layout */
+.thumb-grid {
+  display: grid !important;
+  grid-template-columns: repeat(4, 1fr) !important;
+  gap: 0.5rem;
+  width: 100%;
+  height: auto; /* Removes 500px pixel lock */
+}
+
+/* Individual grid cell */
+.thumb-item {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1; /* forces strict square tiles */
+  overflow: hidden !important;
+  border-radius: 3px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  transition: border-color 0.3s ease;
+}
+
+/* Image fit constraints — this is the part that actually makes them "fit within the box" */
+.thumb-item img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  display: block !important;
+  transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), filter 0.3s ease;
+  will-change: transform;
+}
+
+.thumb-item:hover img {
+  transform: scale(1.12);
+
+}
+
+/* ==========================================================================
+   LOTTIE GRID - MOTION CASE
+   ========================================================================== */
+
+/* --- MOTION CASE STUDY GRID LAYOUT --- */
+.motion-grid-layout {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important; /* Equal 50/50 split */
+  gap: 2.5rem !important;
+  align-items: start !important;
+  margin-top: 4rem !important;
+}
+
+/* 3x3 Grid inside the Left Frame */
+.lottie-3x3-grid {
+  display: grid !important;
+  grid-template-columns: repeat(3, 1fr) !important;
+  grid-template-rows: repeat(3, 1fr) !important;
+  gap: 0.75rem !important;
+  width: 100% !important;
+  height: 100% !important;
+  padding: 1rem !important;
+  box-sizing: border-box !important;
+}
+
+/* Player Sizing (Updated to lottie-player) */
+.lottie-slot lottie-player {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+/* --- DARK MODE (DEFAULTS) --- */
+.motion-lottie-frame {
+  position: relative !important;
+  width: 100% !important;
+  aspect-ratio: 1 / 1 !important;
+  overflow: hidden !important;
+  box-sizing: border-box !important;
+  background: var(--bg-darkmode, #0b1120) !important;
+  border: 1px solid var(--border, #00f0ff) !important;
+  transition: background 0.3s ease, border-color 0.3s ease !important;
+}
+
+.lottie-slot {
+  width: 100% !important;
+  height: 100% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  overflow: hidden !important;
+  background: rgba(255, 255, 255, 0.03) !important;
+  border: 0px dashed rgba(255, 255, 255, 0.15) !important;
+  transition: background 0.3s ease, border-color 0.3s ease !important;
+}
+
+/* --- LIGHT MODE OVERRIDES --- */
+body.light-mode .motion-lottie-frame {
+  background: var(--bg-lightmode) !important;
+  border-color: var(--border-bright) !important;
+}
+
+body.light-mode .lottie-slot {
+  background: rgba(0, 0, 0, 0.04) !important;
+  border-color: rgba(0, 0, 0, 0.15) !important;
+}
+
+/* --- RIGHT COLUMN STACK --- */
+.motion-info-stack {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 2rem !important;
+  justify-content: center !important;
+}
+
+.motion-param-block h5 {
+  font-family: var(--font-header) !important;
+  font-size: 1.15rem !important;
+  color: var(--text-main, #ffffff) !important;
+  margin-bottom: 0.5rem !important;
+}
+
+.motion-param-block p {
+  color: var(--muted) !important;
+  font-size: 0.95rem !important;
+  line-height: 1.6 !important;
+  margin: 0 !important;
+}
+
+.motion-info h6 {
+  font-family: var(--font-header);
+  color: var(--text);
+  font-size: 1.8rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+/* --- HUD SLIDE SWITCH --- */
+.theme-toggle-wrapper {
+  display: flex !important;
+  align-items: center !important;
+  gap: 1.25rem !important;
+  margin-top: 1rem !important;
+  padding-top: 1.5rem !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+.theme-label {
+  font-family: var(--font-header) !important;
+  font-size: 1rem !important;
+  font-weight: 700 !important;
+  color: var(--text) !important;
+}
+
+.hud-switch {
+  position: relative !important;
+  display: inline-block !important;
+  width: 52px !important;
+  height: 28px !important;
+}
+
+.hud-switch input {
+  opacity: 0 !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+
+.hud-slider {
+  position: absolute !important;
+  cursor: pointer !important;
+  inset: 0 !important;
+  background-color: #222222 !important;
+  border: 2px solid var(--accent, #ff9900) !important;
+  border-radius: 30px !important;
+  transition: 0.3s ease !important;
+}
+
+.hud-slider::before {
+  position: absolute !important;
+  content: "" !important;
+  height: 18px !important;
+  width: 18px !important;
+  left: 3px !important;
+  bottom: 3px !important;
+  background-color: var(--accent, #ff9900) !important;
+  border-radius: 50% !important;
+  transition: 0.3s ease !important;
+}
+
+.hud-switch input:checked + .hud-slider {
+  background-color: var(--accent, #ff9900) !important;
+}
+
+.hud-switch input:checked + .hud-slider::before {
+  transform: translateX(24px) !important;
+  background-color: #000000 !important;
+}
+
+/* --- YOUTUBE HUD PLAYER CONTAINER --- */
+/* Enable clip and sizing inside the frame component */
+.frame.youtube-frame-container {
+  margin-top: 20px;
+  position: relative !important;
+  width: 100% !important;
+  aspect-ratio: 16 / 9 !important;
+  overflow: hidden !important;
+  background: var(--surface, #050505) !important;
+  border: 1px solid var(--border, #00f0ff) !important; /* Uses your cyan/orange HUD border */
+}
+
+/* Force iframe to stretch cleanly within the HUD frame */
+.youtube-frame-container iframe {
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  border: none !important;
+  pointer-events: none !important;
+}
+
+/* Click-to-Pause HUD Overlay */
+.video-click-overlay {
+  position: absolute !important;
+  inset: 0 !important;
+  z-index: 5 !important;
+  cursor: pointer !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.pause-indicator {
+  font-family: var(--font-header) !important;
+  font-size: 1.1rem !important;
+  letter-spacing: 0.15em !important;
+  color: var(--accent, #00f0ff) !important;
+  padding: 0.5rem 1.25rem !important;
+  border: 1px solid var(--accent, #00f0ff) !important;
+  background: rgba(0, 0, 0, 0.85) !important;
+  opacity: 0;
+  transition: opacity 0.2s ease !important;
+}
+
+.video-click-overlay.is-paused .pause-indicator {
+  opacity: 1 !important;
+}
+
+
+/* --- DEFAULT (DARK MODE) --- */
+.motion-lottie-frame {
+  background: var(--bg); /* Uses your main dark background */
+  border: 1px solid var(--border);
+}
+
+.lottie-slot {
+  background: rgba(255, 255, 255, 0.03); /* Subtle dark tile fill */
+  border: 1px dashed rgba(255, 255, 255, 0.15);
+  transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+/* --- LIGHT MODE OVERRIDES --- */
+/* (Change body.light-mode to your actual theme class or attribute like html[data-theme="light"]) */
+body.light-mode .motion-lottie-frame {
+  background: var(--bg); /* Automatically maps to light --bg if --bg changes on body */
+  border-color: var(--accent);
+}
+
+body.light-mode .lottie-slot {
+  background: rgba(0, 0, 0, 0.04); /* Inverted tile fill for light mode */
+  border-color: rgba(0, 0, 0, 0.15);
+}
+
+
+/* ==========================================================================
+   Office Page
+   ========================================================================== */
+
+/* Container HUD Frame */
+.gallery-display-frame {
+  position: relative !important;
+  width: 100% !important;
+  background: var(--surface, #0b1120) !important;
+  border: 1px solid var(--border, #00f0ff) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 0.75rem !important;
+  padding: 1rem !important;
+  margin-bottom: 2rem;
+  box-sizing: border-box !important;
+  transition: background 0.3s ease, border-color 0.3s ease !important;
+}
+
+body.light-mode .gallery-display-frame {
+  background: #f1f5f9 !important;
+  border-color: #00a8ff !important;
+}
+
+/* Main Display Viewport */
+.gallery-main-viewer {
+  position: relative !important;
+  width: 100% !important;
+  aspect-ratio: 16 / 9 !important;
+  overflow: hidden !important;
+  background: #000 !important;
+  border: 1px solid var(--border, rgba(255, 255, 255, 0.1)) !important;
+}
+
+.gallery-main-viewer img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  display: block !important;
+}
+
+/* HUD Overlay Arrows (Matching .lightbox-arrow) */
+.gallery-arrow {
+  position: absolute !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  background: rgba(10, 10, 10, 0.85) !important;
+  border: 0px solid var(--border, rgba(255, 255, 255, 0.2)) !important;
+  color: var(--accent, #ff9900) !important;
+  font-family: var(--font-header, monospace) !important;
+  font-size: 1.25rem !important;
+  width: 45px !important;
+  height: 45px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  cursor: pointer !important;
+  z-index: 10 !important;
+  transition: all 0.2s ease !important;
+  user-select: none !important;
+  line-height: 1 !important;
+}
+
+.gallery-arrow:hover {
+  background: var(--accent, #ff9900) !important;
+  color: #000 !important;
+  box-shadow: 0 0 15px var(--accent, #ff9900) !important;
+}
+
+.gallery-arrow.prev { left: 1rem !important; }
+.gallery-arrow.next { right: 1rem !important; }
+
+/* Bottom Thumbnail Strip (Matching .archive-strip) */
+.gallery-thumb-strip {
+  display: flex !important;
+  gap: 0.75rem !important;
+  overflow-x: auto !important;
+  padding-bottom: 0.25rem !important;
+}
+
+.thumb-item {
+  width: 125px !important;
+  aspect-ratio: 1 / 1;
+  object-fit: cover !important;
+  opacity: 1 !important;
+  cursor: pointer !important;
+  background: var(--surface, #000) !important;
+  border: 1px solid var(--border, rgba(255, 255, 255, 0.15)) !important;
+  transition: all 0.2s ease !important;
+}
+
+.thumb-item:hover {
+  opacity: 1 !important;
+  border-color: var(--accent, #ff9900) !important;
+}
+
+.thumb-item.active {
+  opacity: 1 !important;
+  border: 1px solid var(--accent, #ff9900) !important;
+  box-shadow: 0 0 10px var(--accent, #ff9900) !important;
+}
+
+   
+
+/* ==========================================================================
+   MOBILE STUFF
+   ========================================================================== */
+
+
+/* RESPONSIVE MOBILE STACK */
+@media (max-width: 900px) {
+  .motion-grid-layout {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* FORCE 2x2 MOBILE GRID */
+@media screen and (max-width: 400px) {
+  .case-study-block .archive-section .archive-strip,
+  .archive-section .archive-strip,
+  .archive-strip {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    grid-template-rows: auto !important;
+    gap: 1rem !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Ensure child items fill their grid cells properly */
+  .archive-section .archive-box {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important; /* Fixes CSS Grid flex-item overflow bug */
+    aspect-ratio: 1 / 1 !important;
+  }
+}
+
+
+/* 1. Tablet & Mobile Header Layout (<= 1024px) */
+/* ==========================================================================
+   TABLET & MOBILE BREAKPOINTS (<= 1024px)
+   ========================================================================== */
+
+/* RESPONSIVE MOBILE STACK */
+@media (max-width: 900px) {
+  .motion-grid-layout {
+    grid-template-columns: 1fr !important;
+  }
+
+@media (max-width: 768px) {
+  .grid-story {
+    grid-template-columns: 1fr !important;
+  }
+  .archive-strip {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+@media (max-width: 1024px) {
+  /* 1. Force main nav wrapper into a vertical stack */
+  .comic-nav {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    width: 100% !important;
+    gap: 1.25rem !important;
+  }
+
+  /* 2. Lock 01, 02, 03 container to ALWAYS stay a horizontal row */
+  .nav-index-links {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    justify-content: space-between !important;
+    width: 100% !important;
+    gap: 0.5rem !important;
+  }
+
+  /* 3. Equal fluid sizing for button links */
+  .nav-index-links .index-btn {
+    flex: 1 1 0px !important;
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: center !important;
+    align-items: center !important;
+    min-width: 0 !important;
+    padding: 0.6rem 0.35rem !important;
+    box-sizing: border-box !important;
+    gap: 0.35rem !important;
+  }
+
+  .index-label {
+    font-size: clamp(0.65rem, 1.8vw, 0.85rem) !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+  }
+
+  /* 4. Force "SKY FRANKS" section header & subtitle to stack vertically */
+  header.case-study-block,
+  .case-study-block .section-header,
+  .section-header {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    width: 100% !important;
+    gap: 1rem !important;
+  }
+
+  .header-subtitle {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding-left: 0.75rem !important;
+  }
+}
+
+@media (max-width: 768px) {
+
+  .grid-story,
+  .archive-strip,
+  .gates-grid {
+    grid-template-columns: 1fr !important;
+    gap: 1.25rem !important;
+  }
+
+  /* Single column fallback for panel display ONLY on small mobile screens */
+  .panel-display {
+    grid-template-columns: 1fr !important;
+  }
+
+  .frame-zoom {
+    aspect-ratio: 1 / 1 !important;
+    min-height: 380px !important;
+  }
+
+  .gates-grid {
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .frame-img {
+    height: 260px;
+  }
+
+  .logo-container {
+    width: 100%;
+    max-width: clamp(280px, 80vw, 600px);
+    margin: 0 auto;
+    padding: 0 1rem;
+    box-sizing: border-box;
+  }
+
+  .hud-logo-svg {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  /* Force "DIGITAL ARTIST." title to ALWAYS break onto two lines */
+  .hero-title,
+  .hero-heading,
+  h1 {
+    display: block !important;
+    white-space: pre-line !important;
+  }
+
+}
+
+/* 3. HUD Control Module Mobile Stacking (<= 600px) */
+@media (max-width: 600px) {
+  .hud-control-module {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    width: 100% !important;
+    max-width: 280px !important;
+    height: auto !important;
+    padding: 0.85rem 1rem !important;
+    gap: 0.75rem !important;
+    box-sizing: border-box !important;
+  }
+
+  .hud-slider-decoration {
+    width: 100% !important;
+  }
+
+  .hud-dials {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    width: 100% !important;
+    gap: 0.5rem !important;
+  }
+
+  /* Hide knob dial SVGs */
+  .hud-dials .svg-knob {
+    display: none !important;
+  }
+
+  /* Force preset buttons to sit side-by-side horizontally */
+  .hud-preset-buttons {
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: center !important;
+    align-items: center !important;
+    width: 100% !important;
+    gap: 0.5rem !important;
+  }
+
+  .hud-preset-buttons .preset-btn {
+    display: inline-block !important;
+  }
+
+  /* On touch/narrow screens, hover can't track a mouse, so drop the
+     pan-and-zoom effect and just show the image at normal size. */
+  .frame-zoom {
+    cursor: default;
+  }
+
+  .frame-zoom:hover .zoom-img {
+    transform: none;
+  }
+
+
+}
+
+}
