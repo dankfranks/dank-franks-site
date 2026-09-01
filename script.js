@@ -678,32 +678,46 @@ tag.src = "https://www.youtube.com/iframe_api";
 var firstScriptTag = document.getElementsByTagName('script')[0];
 firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
-let player;
-let isPlaying = true;
+// Each YouTube embed on the page gets its own iframe id (ytVideoIframe1,
+// ytVideoIframe2, ...) with a matching overlay id (ytVideoOverlay1, ...).
+// We find all of them and wire each one up independently so multiple
+// videos on the same page can each be played/paused on their own.
+const ytPlayers = {}; // iframeId -> { player, isPlaying }
 
 function onYouTubeIframeAPIReady() {
-  player = new YT.Player('ytVideoIframe', {
-    events: {
-      'onReady': onPlayerReady
-    }
+  const iframes = document.querySelectorAll('iframe[id^="ytVideoIframe"]');
+
+  iframes.forEach((iframe) => {
+    const iframeId = iframe.id;
+    ytPlayers[iframeId] = { player: null, isPlaying: true };
+
+    ytPlayers[iframeId].player = new YT.Player(iframeId, {
+      events: {
+        'onReady': (event) => onPlayerReady(event, iframeId)
+      }
+    });
   });
 }
 
-function onPlayerReady(event) {
+function onPlayerReady(event, iframeId) {
   event.target.mute();
   event.target.playVideo();
 
-  const overlay = document.getElementById('ytVideoOverlay');
+  // ytVideoIframe1 -> ytVideoOverlay1, ytVideoIframe2 -> ytVideoOverlay2, etc.
+  const suffix = iframeId.replace('ytVideoIframe', '');
+  const overlay = document.getElementById('ytVideoOverlay' + suffix);
+
   if (overlay) {
     overlay.addEventListener('click', () => {
-      if (isPlaying) {
-        player.pauseVideo();
+      const state = ytPlayers[iframeId];
+      if (state.isPlaying) {
+        state.player.pauseVideo();
         overlay.classList.add('is-paused');
-        isPlaying = false;
+        state.isPlaying = false;
       } else {
-        player.playVideo();
+        state.player.playVideo();
         overlay.classList.remove('is-paused');
-        isPlaying = true;
+        state.isPlaying = true;
       }
     });
   }
