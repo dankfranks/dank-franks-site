@@ -19,7 +19,7 @@
   --font-tech: 'JetBrains Mono', monospace;
   --font-header: var(--font-tech);
   --font-body: var(--font-tech);
-  --scanline-opacity: 0.6;
+  --scanline-opacity: 0.0;
   --stroke-color: #00f0ff;
   --shadow:#00f0ff;
   --bg-darkmode: rgba(3, 7, 18, 0.65);
@@ -1015,6 +1015,7 @@ h1 span {
 }
 
 /* Fluid Logo Scaling */
+/* Fluid Logo Scaling (Your existing rules stay here) */
 .header-logo {
   height: clamp(40px, 7vw, 40px);
   width: auto;
@@ -1200,7 +1201,7 @@ h1 span {
 
 .back-lnk:hover {
   text-shadow: 0 0 8px var(--accent-glow);
-  color: #ffffff; /* Add brightness on hover */
+  color: var(--text); /* Add brightness on hover */
 }
 
 .scroll-top-btn {
